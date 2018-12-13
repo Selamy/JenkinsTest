@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      dockerfile { dir './Dockerfile'}
-    }
-  }
+  agent  any
  stages {
         stage('Git pull') {
           steps {
