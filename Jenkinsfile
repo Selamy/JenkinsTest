@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'phpdockerio/php72-cli'
+    }
   }
   stages {
     stage('Git pull') {
