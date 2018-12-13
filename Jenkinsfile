@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'phpdockerio/php72-cli'
+      image 'redislabs/rejson:latest'
     }
   }
   stages {
@@ -16,11 +17,7 @@ pipeline {
           }
         }
         stage('Unit test') {
-          agent {
-            docker {
-              image 'redislabs/rejson:latest'
-            }
-          }
+
           steps {
             sh 'composer run unit-tests'
           }
