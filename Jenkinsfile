@@ -20,6 +20,7 @@ pipeline {
           agent {
             docker {
               image 'redislabs/rejson:latest'
+            }
           }
           steps {
             sh 'composer run unit-tests'
