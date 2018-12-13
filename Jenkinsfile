@@ -1,15 +1,10 @@
 pipeline {
   agent {
     docker {
-      image 'redislabs/rejson:latest'
+      dockerfile { dir './Dockerfile'}
     }
   }
-  stages {
-          agent {
-            docker {
-              image 'phpdockerio/php72-cli'
-            }
-          }
+
         stage('Git pull') {
           steps {
             git(url: 'https://github.com/Selamy/JenkinsTest', branch: 'master')
@@ -26,5 +21,5 @@ pipeline {
             sh 'composer run unit-tests'
           }
         }
-  }
+
 }
