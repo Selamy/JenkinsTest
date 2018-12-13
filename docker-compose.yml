@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  php:
+    container_name: selamy-php-cli
+    build: ./.docker/php/
+    volumes:
+      - .:/code
+      - ./DOCKER/php/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+    links:
+      - redis
+  redis:
+    image: "redislabs/rejson:latest"
+    container_name: selamy-redis
+    ports:
+      - 6379:6379
