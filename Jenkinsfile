@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Start docker') {
           steps {
-              withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/user/local/bin']) {
+              withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin']) {
                 sh '/usr/local/bin/docker-compose up -d'
               }
           }
