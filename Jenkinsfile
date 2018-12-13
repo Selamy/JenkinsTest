@@ -1,5 +1,8 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'phpdockerio/php72-cli'
+  }
   stages {
     stage('Git pull') {
       parallel {
@@ -13,14 +16,11 @@ pipeline {
             sh 'composer install'
           }
         }
-        stage('Start docker') {
-          steps {
-              withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin']) {
-                sh '/usr/local/bin/docker-compose up -d'
-              }
-          }
-        }
         stage('Unit test') {
+          agent {
+            docker {
+              image 'redislabs/rejson:latest'
+          }
           steps {
             sh 'composer run unit-tests'
           }
