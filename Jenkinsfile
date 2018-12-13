@@ -4,7 +4,7 @@ pipeline {
       dockerfile { dir './Dockerfile'}
     }
   }
-
+ stages {
         stage('Git pull') {
           steps {
             git(url: 'https://github.com/Selamy/JenkinsTest', branch: 'master')
@@ -21,5 +21,5 @@ pipeline {
             sh 'composer run unit-tests'
           }
         }
-
+}
 }
