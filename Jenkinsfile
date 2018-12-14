@@ -3,7 +3,6 @@ pipeline {
     dockerfile {
       filename './Dockerfile'
     }
-
   }
   stages {
     stage('Git pull') {
@@ -17,11 +16,9 @@ pipeline {
       }
     }
     stage('Unit test') {
-        docker.image('redislabs/rejson:latest').withRun('-p 6379:6379') {
-                sh 'composer run unit-tests'
-
-        }
-
+      docker.image('redislabs/rejson:latest').withRun('-p 6379:6379') {
+        sh 'composer run unit-tests'
+      }
     }
   }
 }
