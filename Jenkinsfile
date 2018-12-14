@@ -1,5 +1,10 @@
 pipeline {
-  agent  any
+  agent {
+    docker {
+      image 'zaherg/php-7.2-xdebug-alpine'
+    }
+
+  }
   stages {
     stage('Git pull') {
       steps {
