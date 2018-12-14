@@ -2,7 +2,6 @@ pipeline {
   agent {
     dockerfile {
       filename './Dockerfile'
-      additionalBuildArgs "-p 6379:6379"
     }
 
   }
@@ -18,9 +17,11 @@ pipeline {
       }
     }
     stage('Unit test') {
-      steps {
-        sh 'composer run unit-tests'
-      }
+        docker.image('redislabs/rejson:latest').withRun('-p 6379:6379') {
+                sh 'composer run unit-tests'
+
+        }
+
     }
   }
 }
