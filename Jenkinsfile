@@ -16,12 +16,12 @@ pipeline {
       }
     }
     stage('Unit test') {
-    agent {
+      agent {
         docker {
-            image 'redislabs/rejson:latest'
+          image 'redislabs/rejson:latest'
             args '-p 6379:6379'
-        }
-    }
+          }
+      }
       steps {
         sh 'composer run unit-tests'
       }
